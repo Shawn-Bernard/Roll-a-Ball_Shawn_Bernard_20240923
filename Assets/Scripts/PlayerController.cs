@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         count = 0;
+        SetCountText();
     }
     void OnMove(InputValue movementValue)
     {
@@ -45,9 +46,10 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("PickUp"))
         {
-            void SetCountText();
+            
             other.gameObject.SetActive(false);
             count++;
+            SetCountText();
         }
     }
     void SetCountText()
