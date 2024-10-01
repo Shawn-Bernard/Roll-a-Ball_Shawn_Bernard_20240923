@@ -86,9 +86,19 @@ public class PlayerController : MonoBehaviour
             count++;
             SetCountText();
         }
+
         if (other.gameObject.CompareTag("SpeedBoost"))
         {
             speed = 20;
+        }
+        else
+        {
+            speed = 15;
+        }
+
+        if (other.gameObject.tag == "JumpPad")
+        {
+            rb.AddForce(0, 500, 0, ForceMode.Force);
         }
     }
     void SetCountText()
