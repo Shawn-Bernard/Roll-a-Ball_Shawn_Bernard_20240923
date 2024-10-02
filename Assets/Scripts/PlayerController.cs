@@ -40,31 +40,12 @@ public class PlayerController : MonoBehaviour
         movementY = movementVector.y;
 
     }
-    void Update()
-    {
-        if (Timer > 0)
-        {
-            Timer -= Time.deltaTime;
-        }
-        if (Input.GetKeyDown(KeyCode.Space) && CoolDown <= 0)
-        {
-          rb.AddForce(0, 100, 0, ForceMode.Force);
-            Timer = CoolDown;
+    void Update() {
+        
+    }
+         
 
-        }
-
-
-            //if (Input.GetKeyDown(KeyCode.Space) && CanJump <= 0 )
-            //{
-            //    rb.AddForce(0, 100, 0, ForceMode.Force);
-            //    CanJump -= -25;
-            //}
-            //else
-            //{
-            //    CoolDown += CanJump + Time.deltaTime;
-            //}
-
-        }
+  
 
     void FixedUpdate()
     {
@@ -96,9 +77,9 @@ public class PlayerController : MonoBehaviour
             speed = 15;
         }
 
-        if (other.gameObject.tag == "JumpPad")
+        if (other.gameObject.tag == "JumpPad" || Input.GetKeyDown(KeyCode.Space))
         {
-            rb.AddForce(0, 500, 0, ForceMode.Force);
+            rb.AddForce(0, 300, 0, ForceMode.Force);
         }
     }
     void SetCountText()

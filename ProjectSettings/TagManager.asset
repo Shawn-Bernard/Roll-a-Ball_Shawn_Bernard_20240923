@@ -6,6 +6,7 @@ TagManager:
   tags:
   - PickUp
   - SpeedBoost
+  - JumpPad
   layers:
   - Default
   - TransparentFX
