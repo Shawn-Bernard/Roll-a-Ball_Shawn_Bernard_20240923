@@ -40,7 +40,12 @@ public class PlayerController : MonoBehaviour
         movementY = movementVector.y;
 
     }
-    void Update() {
+    void Update() 
+    {
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            speed = 100;
+        }
         
     }
          
@@ -52,7 +57,7 @@ public class PlayerController : MonoBehaviour
         Vector3 movement = new Vector3(movementX, 0.0f, movementY);
 
         rb.AddForce(movement * speed);
-        
+
         
 
 
@@ -70,7 +75,7 @@ public class PlayerController : MonoBehaviour
 
         if (other.gameObject.CompareTag("SpeedBoost"))
         {
-            speed = 20;
+            speed = 50;
         }
         else
         {
