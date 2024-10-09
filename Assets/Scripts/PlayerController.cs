@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
+using Unity.VisualScripting;
 
 public class PlayerController : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class PlayerController : MonoBehaviour
 
     private int count;
     public TextMeshProUGUI countText;
+    public GameObject TextBox;
     public GameObject winTextCount;
     
      
@@ -30,6 +32,7 @@ public class PlayerController : MonoBehaviour
         count = 0;
         SetCountText();
         winTextCount.SetActive(false);
+        TextBox.SetActive(false);
     }
     void OnMove(InputValue movementValue)
     {
@@ -47,6 +50,7 @@ public class PlayerController : MonoBehaviour
             speed = 100;
         }
         
+        
     }
          
 
@@ -54,13 +58,14 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        Movement();
+
+    }
+    void Movement()
+    {
         Vector3 movement = new Vector3(movementX, 0.0f, movementY);
 
         rb.AddForce(movement * speed);
-
-        
-
-
     }
 
     void OnTriggerEnter(Collider other)
@@ -86,7 +91,16 @@ public class PlayerController : MonoBehaviour
         {
             rb.AddForce(0, 300, 0, ForceMode.Force);
         }
+        if (other.gameObject.tag == "Light")
+        {
+            Debug.Log("Hit");
+        }
+        //if (other.gameObject.tag == "Text Box" && Input.GetKeyDown(KeyCode.F))
+        //{
+        //    TextBox.SetActive(true);
+        //}
     }
+    
     void SetCountText()
     {
         countText.text = "Count: " + count.ToString();
