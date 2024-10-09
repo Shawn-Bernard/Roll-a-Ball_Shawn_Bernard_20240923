@@ -7,7 +7,6 @@ using TMPro;
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody rb;
-    
 
     private float movementX;
     private float movementY;
@@ -21,10 +20,9 @@ public class PlayerController : MonoBehaviour
     private int count;
     public TextMeshProUGUI countText;
     public GameObject winTextCount;
-
-    static Vector3 Forward = Vector3.forward;
     
-
+     
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -49,22 +47,20 @@ public class PlayerController : MonoBehaviour
             speed = 100;
         }
         
-        
     }
          
-    
+
   
 
     void FixedUpdate()
     {
-        Movement();
-
-    }
-    void Movement()
-    {
         Vector3 movement = new Vector3(movementX, 0.0f, movementY);
 
-        rb.AddForce(movement * speed) * Forward;
+        rb.AddForce(movement * speed);
+
+        
+
+
     }
 
     void OnTriggerEnter(Collider other)
@@ -86,7 +82,7 @@ public class PlayerController : MonoBehaviour
             speed = 15;
         }
 
-        if (other.gameObject.tag == "JumpPad") //Input.GetKeyDown(KeyCode.Space))
+        if (other.gameObject.tag == "JumpPad" || Input.GetKeyDown(KeyCode.Space))
         {
             rb.AddForce(0, 300, 0, ForceMode.Force);
         }
