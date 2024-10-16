@@ -9,6 +9,7 @@ TagManager:
   - JumpPad
   - 'Text Box '
   - Light
+  - Enemy
   layers:
   - Default
   - TransparentFX

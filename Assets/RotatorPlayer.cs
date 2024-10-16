@@ -6,7 +6,7 @@ public class RotatorPlayer : MonoBehaviour
 {
     public Transform Player;
     public float Speed = 5f;
-    private Vector3 offset;
+    
     
 
     
@@ -25,6 +25,7 @@ public class RotatorPlayer : MonoBehaviour
         float mouseX = Input.GetAxis("Mouse X");
         
         transform.RotateAround(Player.position, Vector3.up, mouseX * Speed );
+        transform.position = Player.position;
 
         
 

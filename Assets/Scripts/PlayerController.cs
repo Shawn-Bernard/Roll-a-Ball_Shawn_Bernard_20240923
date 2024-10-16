@@ -45,12 +45,16 @@ public class PlayerController : MonoBehaviour
     }
     void Update() 
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Timer == 0 && Input.GetKeyDown(KeyCode.LeftShift))
         {
+            
             speed = 100;
+            Timer = 10;
         }
-        
-        
+        else
+        {
+            Timer -= Time.deltaTime;
+        }
     }
          
 
@@ -91,14 +95,8 @@ public class PlayerController : MonoBehaviour
         {
             rb.AddForce(0, 300, 0, ForceMode.Force);
         }
-        if (other.gameObject.tag == "Light")
-        {
-            Debug.Log("Hit");
-        }
-        //if (other.gameObject.tag == "Text Box" && Input.GetKeyDown(KeyCode.F))
-        //{
-        //    TextBox.SetActive(true);
-        //}
+        
+        
     }
     
     void SetCountText()
