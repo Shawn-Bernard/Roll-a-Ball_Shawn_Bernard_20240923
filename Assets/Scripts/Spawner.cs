@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
+    public static List<Enemy> allEnemies = new List<Enemy>();
     public GameObject Enemy;
     public int enemy;
     // Start is called before the first frame update
@@ -15,11 +16,14 @@ public class Spawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (enemy <= 10)
+        if (enemy < 10)
         {
             Instantiate(Enemy);
             enemy++;
         }
+        
+            
+        
         
     }
 }
