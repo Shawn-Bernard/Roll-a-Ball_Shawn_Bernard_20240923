@@ -4,26 +4,38 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    public static List<Enemy> allEnemies = new List<Enemy>();
+    
     public GameObject Enemy;
     public int enemy;
+
+    public float minimumSpawnTime;
+
+    public float maximumSpawnTime;
+
+    public float timeUntillSpawn;
+
+
+
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        
+        SetTimeUntillSpawn();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (enemy < 10)
+        timeUntillSpawn -= Time.deltaTime;
+        if (timeUntillSpawn <= 0)
         {
-            Instantiate(Enemy);
-            enemy++;
+            Instantiate(Enemy, transform.position, Quaternion.identity);
+            SetTimeUntillSpawn();
         }
-        
-            
-        
-        
+       
+    }
+
+    private void SetTimeUntillSpawn()
+    {
+        timeUntillSpawn = Random.Range(minimumSpawnTime, maximumSpawnTime);
     }
 }
