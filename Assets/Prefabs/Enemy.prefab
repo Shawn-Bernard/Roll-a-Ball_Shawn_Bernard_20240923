@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2152192548211891159}
   - component: {fileID: 123334953679079133}
   - component: {fileID: 5449547376368759799}
+  - component: {fileID: -4922245849809387919}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -64,7 +65,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 84d579488cad68743ba7011a7e9d3c26, type: 2}
+  - {fileID: 2100000, guid: ad0825edf16691d4eae3525038cd79ce, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -146,4 +147,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89a7b1752a3c0ff418f96ed388923928, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetObj: {fileID: 0}
+--- !u!135 &-4922245849809387919
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4652765239336453079}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
