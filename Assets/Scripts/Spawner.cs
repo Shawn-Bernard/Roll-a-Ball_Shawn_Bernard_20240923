@@ -6,7 +6,7 @@ public class Spawner : MonoBehaviour
 {
     
     public GameObject Enemy;
-    public int enemy;
+    
 
     public float minimumSpawnTime;
 

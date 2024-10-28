@@ -1,15 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Principal;
+using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    
+    //public GameObject SpeedBoost;
 
     // Start is called before the first frame update
     void Start()
     {
-        //Cursor.lockState = CursorLockMode.Locked;
+       
 
       
         
@@ -26,8 +29,8 @@ public class Enemy : MonoBehaviour
     {
         if (other.gameObject.tag == "Light")
         {
-            
             Destroy(gameObject);
+            Drop();
         }
     }
     void Follow()
@@ -35,9 +38,17 @@ public class Enemy : MonoBehaviour
         GameObject P = GameObject.Find("Player");
         transform.position = Vector3.MoveTowards(this.transform.position, P.transform.position, 2 * Time.deltaTime);
     }
-    void Away()
+    void Drop()
     {
-        GameObject Safe = GameObject.Find("SafeLight");
-        transform.position = Vector3.MoveTowards(this.transform.position, Safe.transform.position, 1 - Time.deltaTime);
+        GameObject SpeedDrop = GameObject.Find("SpeedDrop");
+        Vector3 position = transform.position;
+        GameObject Speed = Instantiate(SpeedDrop, position,Quaternion.identity);
+
     }
+    void Dead()
+    {
+        Destroy(gameObject);
+
+    }
+
 }

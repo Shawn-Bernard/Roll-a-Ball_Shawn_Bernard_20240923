@@ -14,8 +14,9 @@ public class PlayerController : MonoBehaviour
 
     public float speed = 0;
     public float CoolDown = 2f;
-    public float Timer;
-    //public bool CanJump = true;
+    public float OnCooldown;
+    public float Cooldown;
+    public float MaxCooldown;
     
 
     private int count;
@@ -45,16 +46,8 @@ public class PlayerController : MonoBehaviour
     }
     void Update() 
     {
-        if (Timer == 0 && Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            
-            speed = 100;
-            Timer = 10;
-        }
-        else
-        {
-            Timer -= Time.deltaTime;
-        }
+        //if (Timer == 0 && Input.GetKeyDown(KeyCode.LeftShift))
+        
     }
          
 
@@ -82,21 +75,17 @@ public class PlayerController : MonoBehaviour
             SetCountText();
         }
 
-        if (other.gameObject.CompareTag("SpeedBoost"))
+        if (other.gameObject.CompareTag("SpeedBoost") && Cooldown == 0)
         {
             speed = 50;
+            CoolDown = 10;
         }
-        else
-        {
-            speed = 15;
-        }
+        
 
-        if (other.gameObject.tag == "JumpPad" || Input.GetKeyDown(KeyCode.Space))
+        if (other.gameObject.tag == "JumpPad" )
         {
             rb.AddForce(0, 300, 0, ForceMode.Force);
         }
-        
-        
     }
     
     void SetCountText()
