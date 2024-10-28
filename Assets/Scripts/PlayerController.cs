@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour
     void Update() 
     {
         //if (Timer == 0 && Input.GetKeyDown(KeyCode.LeftShift))
-        
+        Movement();
     }
          
 
@@ -55,7 +55,7 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        Movement();
+        
 
     }
     void Movement()

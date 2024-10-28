@@ -22,12 +22,21 @@ public class RotatorPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float mouseX = Input.GetAxis("Mouse X");
-        
-        transform.RotateAround(Player.position, Vector3.up, mouseX * Speed );
-        transform.position = Player.position;
+        RotatorLight();
 
-        
+
+
+
+    }
+    void RotatorLight()
+    {
+        float mouseX = Input.GetAxis("Mouse X");
+
+        transform.RotateAround(Player.position, Vector3.up, mouseX * Speed);
+        transform.position = Player.position;
+    }
+    void LightSwitch()
+    {
 
     }
 }
