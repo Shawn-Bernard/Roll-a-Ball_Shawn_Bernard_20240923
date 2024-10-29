@@ -81,12 +81,11 @@ public class PlayerController : MonoBehaviour
             CoolDown = 10;
         }
         
+
         if (other.gameObject.tag == "JumpPad" )
         {
             rb.AddForce(0, 300, 0, ForceMode.Force);
         }
-
-        
     }
     
     void SetCountText()

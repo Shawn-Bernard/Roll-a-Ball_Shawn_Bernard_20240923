@@ -8,8 +8,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     //public GameObject SpeedBoost;
-    static public bool Alive = true;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,8 +29,8 @@ public class Enemy : MonoBehaviour
     {
         if (other.gameObject.tag == "Light")
         {
-            Dead();
-            //Drop();
+            Destroy(gameObject);
+            Drop();
         }
     }
     void Follow()
@@ -39,17 +38,16 @@ public class Enemy : MonoBehaviour
         GameObject P = GameObject.Find("Player");
         transform.position = Vector3.MoveTowards(this.transform.position, P.transform.position, 2 * Time.deltaTime);
     }
-    //void Drop()
-    //{
-    //    GameObject SpeedDrop = GameObject.Find("SpeedDrop");
-    //    Vector3 position = transform.position;
-    //    GameObject Speed = Instantiate(SpeedDrop, position,Quaternion.identity);
+    void Drop()
+    {
+        GameObject SpeedDrop = GameObject.Find("SpeedDrop");
+        Vector3 position = transform.position;
+        GameObject Speed = Instantiate(SpeedDrop, position,Quaternion.identity);
 
-    //}
-    public void Dead()
+    }
+    void Dead()
     {
         Destroy(gameObject);
-        Alive = false;
 
     }
 
