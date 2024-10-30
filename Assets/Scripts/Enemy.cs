@@ -7,23 +7,27 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    //public GameObject SpeedBoost;
+    public static List<Enemy> Enemies = new List<Enemy>();
+    public List<GameObject> itemDrops = new List<GameObject>();
+    // Making a public list of itemDrops thta can be added in unity
+    public int Speed;
 
     // Start is called before the first frame update
     void Start()
     {
-       
-
-      
         
+
     }
 
     // Update is called once per frame
     void Update()
     {
         Follow();
-        //Away();
-
+        
+    }
+    public void OnDestroy()
+    {
+        
     }
     void OnTriggerEnter(Collider other)
     {
@@ -35,20 +39,20 @@ public class Enemy : MonoBehaviour
     }
     void Follow()
     {
-        GameObject P = GameObject.Find("Player");
-        transform.position = Vector3.MoveTowards(this.transform.position, P.transform.position, 2 * Time.deltaTime);
+        GameObject P = GameObject.Find("Player");// Finding the player object
+        transform.position = Vector3.MoveTowards(this.transform.position, P.transform.position, Speed * Time.deltaTime);
+        //Moving this(enemy) towards the player position 
     }
     void Drop()
     {
         GameObject SpeedDrop = GameObject.Find("SpeedDrop");
         Vector3 position = transform.position;
-        GameObject Speed = Instantiate(SpeedDrop, position,Quaternion.identity);
-
+        GameObject Drop = Instantiate(itemDrops[0], position,Quaternion.identity);
+        //Making a itemDrop[Battery] at the enemy poitison
     }
     void Dead()
     {
         Destroy(gameObject);
-
     }
 
 }

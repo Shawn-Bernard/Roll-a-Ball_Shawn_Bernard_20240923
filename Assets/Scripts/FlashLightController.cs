@@ -5,16 +5,12 @@ using TMPro;
 
 public class FlashLightController : MonoBehaviour
 {
-    
+    [Header("FlashLight Setting")]
     public GameObject flashlight;
-    public GameObject Battery;
     
     public TMP_Text FlashUI;
 
-    
-
     public float lifeTime = 100;
-
     public int batteries = 0;
 
     private bool on;
@@ -38,8 +34,8 @@ public class FlashLightController : MonoBehaviour
     
     void LightUI()
     {
-        FlashUI.text = $"Batteries [{batteries}]  Battery {lifeTime.ToString("0")}%" ;
-
+        FlashUI.text = $"Batteries [{batteries}]  Battery {lifeTime.ToString("0")}%";
+        //Showing the amount of batteries & converting the lifeTime to only show whloe numbers
 
     }
     void LightSwitch()
@@ -90,11 +86,5 @@ public class FlashLightController : MonoBehaviour
             batteries = 0;// setting batteries to 0 so we don't go under 0
         }
     }
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "Battery")
-        {
-            batteries++;
-        }
-    }
+    
 }

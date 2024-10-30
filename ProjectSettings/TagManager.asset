@@ -10,6 +10,7 @@ TagManager:
   - 'Text Box '
   - Light
   - Enemy
+  - Battery
   layers:
   - Default
   - TransparentFX
