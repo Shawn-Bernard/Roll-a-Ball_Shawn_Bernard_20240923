@@ -7,15 +7,18 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public static List<Enemy> Enemies = new List<Enemy>();
+    
+
     public List<GameObject> itemDrops = new List<GameObject>();
     // Making a public list of itemDrops thta can be added in unity
     public int Speed;
+    private Rigidbody rb;
 
     // Start is called before the first frame update
+
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody>();
 
     }
 
@@ -25,23 +28,32 @@ public class Enemy : MonoBehaviour
         Follow();
         
     }
-    public void OnDestroy()
-    {
-        
-    }
+    
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Light")
         {
-            Destroy(gameObject);
+            Dead();
             Drop();
         }
     }
     void Follow()
     {
-        GameObject P = GameObject.Find("Player");// Finding the player object
-        transform.position = Vector3.MoveTowards(this.transform.position, P.transform.position, Speed * Time.deltaTime);
-        //Moving this(enemy) towards the player position 
+        GameObject Player = GameObject.Find("Player");// Finding the player object
+        GameObject SafeLight = GameObject.Find("Safe");
+        float LightDistance = Vector3.Distance(transform.position, SafeLight.transform.position);
+        float PlayerDistance = Vector3.Distance(transform.position, Player.transform.position);
+        if (LightDistance < 3)
+        {
+            rb.AddForce(Vector3.forward);
+            
+        }
+        else
+        {
+            transform.position = Vector3.MoveTowards(transform.position, Player.transform.position, Speed * Time.deltaTime);
+            //Moving this(enemy) towards the player position
+        }
+        
     }
     void Drop()
     {
@@ -54,5 +66,6 @@ public class Enemy : MonoBehaviour
     {
         Destroy(gameObject);
     }
+    
 
 }

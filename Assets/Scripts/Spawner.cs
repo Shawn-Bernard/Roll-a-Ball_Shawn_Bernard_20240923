@@ -10,7 +10,7 @@ public class Spawner : MonoBehaviour
     public float maximumSpawnTime;
     public float timeUntillSpawn;
 
-    public int maximumAmountOfEnemies = 10;
+    
 
 
 
@@ -23,6 +23,7 @@ public class Spawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         timeUntillSpawn -= Time.deltaTime;
         if (timeUntillSpawn <= minimumSpawnTime)
         // If TUS is less than or MST & enemy count is less than or equal to axEnemy
