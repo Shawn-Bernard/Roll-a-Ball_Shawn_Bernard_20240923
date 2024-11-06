@@ -13,7 +13,7 @@ public class Enemy : MonoBehaviour
     // Making a public list of itemDrops thta can be added in unity
     public int Speed;
     private Rigidbody rb;
-
+    
     // Start is called before the first frame update
 
     void Start()
@@ -59,7 +59,11 @@ public class Enemy : MonoBehaviour
     {
         GameObject SpeedDrop = GameObject.Find("SpeedDrop");
         Vector3 position = transform.position;
-        GameObject Drop = Instantiate(itemDrops[0], position,Quaternion.identity);
+        if (UnityEngine.Random.Range(0,7) == 0)
+        {
+            GameObject Drop = Instantiate(itemDrops[0], position, Quaternion.identity);
+        }
+        
         //Making a itemDrop[Battery] at the enemy poitison
     }
     void Dead()

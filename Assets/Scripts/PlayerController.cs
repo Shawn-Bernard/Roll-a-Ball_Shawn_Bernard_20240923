@@ -83,7 +83,7 @@ public class PlayerController : MonoBehaviour
         }
         if (other.gameObject.tag == "JumpPad" )
         {
-            rb.AddForce(0, 10, 0, ForceMode.Impulse);
+            rb.AddForce(0, 5, 0, ForceMode.VelocityChange);
         }
         if (other.gameObject.tag == "Battery")
         {
@@ -126,7 +126,7 @@ public class PlayerController : MonoBehaviour
 
         if (on) // If on do this code 
         {
-            lifeTime -= 1 * Time.deltaTime;// This will drain the lifetime by 1 * time.deltatime
+            lifeTime -= 4 * Time.deltaTime;// This will drain the lifetime by 1 * time.deltatime
         }
 
         if (lifeTime <= 0) // if LifeTime is less than or equal to 0 play this
@@ -136,6 +136,7 @@ public class PlayerController : MonoBehaviour
             off = true;
             lifeTime = 0;// Setting lifeTime to 0 so it doesn't go under 0
         }
+        
 
         if (lifeTime >= 100)// If LifeTime is greater than or equal to 100 do this
         {
@@ -144,6 +145,8 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetButtonDown("Reload") && batteries >= 1)// this code will play if "r" is pressed & batteries is greater than or equal 1
         {
+            flashlight.SetActive(true);
+            on = true;
             lifeTime += 50;// Adds to the lifeTime by whatever number put
             batteries--;// takes away one batteries when this is played
         }
@@ -151,6 +154,10 @@ public class PlayerController : MonoBehaviour
         if (batteries == 0)// If batteries is equal to 0 do this
         {
             batteries = 0;// setting batteries to 0 so we don't go under 0
+        }
+        if (batteries > 5)
+        {
+            batteries = 5;
         }
     }
 }
