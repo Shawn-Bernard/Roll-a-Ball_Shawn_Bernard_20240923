@@ -17,15 +17,17 @@ public class CameraController : MonoBehaviour
     void LateUpdate()
     {
         transform.position = Player.transform.position + offset;
-        
+        //MouseController();
+
+
     }
     void MouseController()
     {
         GameObject Player = GameObject.Find("Player");
         float mouseX = Input.GetAxis("Mouse X");
 
-        transform.RotateAround(Player.transform.position, Vector3.up, mouseX * Speed);
-        transform.position = Player.transform.position;
+        transform.RotateAround(Player.transform.position, Vector3.forward, mouseX * Speed);
+        transform.position = Player.transform.position + offset;
 
     }
 }

@@ -40,12 +40,12 @@ public class Enemy : MonoBehaviour
     void Follow()
     {
         GameObject Player = GameObject.Find("Player");// Finding the player object
-        GameObject SafeLight = GameObject.Find("Safe");
+        GameObject SafeLight = GameObject.Find("SafeZone");
         float LightDistance = Vector3.Distance(transform.position, SafeLight.transform.position);
         float PlayerDistance = Vector3.Distance(transform.position, Player.transform.position);
         if (LightDistance < 3)
         {
-            rb.AddForce(Vector3.forward);
+            rb.AddForce(Vector3.forward,ForceMode.Force);
             
         }
         else

@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     public GameObject flashlight;
 
     public TMP_Text FlashUI;
+    public TMP_Text Controls;
 
     public float lifeTime = 100;
     public int batteries = 0;
@@ -103,6 +104,8 @@ public class PlayerController : MonoBehaviour
     void LightUI()
     {
         FlashUI.text = $"Batteries [{batteries}]  Battery {lifeTime.ToString("0")}%";
+        Controls.text = $"Off/On [F] Reload [R]";
+            
         //Showing the amount of batteries & converting the lifeTime to only show whloe numbers
     }
     void LightSwitch()
@@ -143,11 +146,6 @@ public class PlayerController : MonoBehaviour
         {
             lifeTime += 50;// Adds to the lifeTime by whatever number put
             batteries--;// takes away one batteries when this is played
-        }
-
-        if (Input.GetButtonDown("Reload") && batteries == 0)
-        {
-            return;
         }
 
         if (batteries == 0)// If batteries is equal to 0 do this
