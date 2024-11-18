@@ -50,17 +50,18 @@ public class PlayerController : MonoBehaviour
     {
         LightSwitch();// Using a method here because my update would look nasty
         LightUI();
+        Movement();
     }
     void FixedUpdate()
     {
-        Movement();
+
     }
 
     void OnMove(InputValue movementValue)
     {
+        
         Vector2 movementVector = movementValue.Get<Vector2>();
-        rb.AddForce(movementVector);
-
+        rb.AddRelativeForce(movementVector);
         movementX = movementVector.x;
         movementY = movementVector.y;
     }
