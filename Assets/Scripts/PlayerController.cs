@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour
     public float lifeTime = 100;
     public int batteries = 0;
     public int batMax = 5 ;
+    public int DrainSpeed;
 
     private bool on;
     private bool off;

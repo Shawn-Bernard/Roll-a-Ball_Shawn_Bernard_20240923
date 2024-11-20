@@ -15,9 +15,9 @@ public class Enemy : MonoBehaviour
     public GameObject Player;
 
     // Start is called before the first frame update
-    private void Awake()
+    public void Awake()
     {
-        GameObject Player;
+        Player = GameObject.Find("Player");
 }
     void Start()
     {

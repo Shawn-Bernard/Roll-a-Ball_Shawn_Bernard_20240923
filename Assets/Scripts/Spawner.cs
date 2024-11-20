@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    public Enemy enemy;
     public GameObject Enemy;
+    //public GameObject Player;
     
-    public float minimumSpawnTime;
-    public float maximumSpawnTime;
+    float minimumSpawnTime = 20;
+    float maximumSpawnTime = 30;
     public float timeUntillSpawn;
 
     
@@ -25,9 +25,10 @@ public class Spawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Vector3 distance = (transform.position - Player.transform.position);
         
         timeUntillSpawn -= Time.deltaTime;
-        if (timeUntillSpawn <= minimumSpawnTime)
+        if (timeUntillSpawn <= 0)
         // If TUS is less than or MST & enemy count is less than or equal to axEnemy
         {
             Instantiate(Enemy, transform.position, Quaternion.identity);
@@ -38,7 +39,8 @@ public class Spawner : MonoBehaviour
 
     private void SetTimeUntillSpawn()
     {
-        timeUntillSpawn = Random.Range(minimumSpawnTime, maximumSpawnTime);
+        //timeUntillSpawn = maximumSpawnTime;
+        timeUntillSpawn = Random.RandomRange(minimumSpawnTime, maximumSpawnTime);
         // Setting timeUntillSpawn with a random range between(MinST & MaxST
     }
 }

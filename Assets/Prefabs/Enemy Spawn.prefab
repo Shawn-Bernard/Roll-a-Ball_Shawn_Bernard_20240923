@@ -45,7 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Enemy: {fileID: 4652765239336453079, guid: ff2486fc4334a324b8d09cb501d46fe2, type: 3}
-  enemy: 0
   minimumSpawnTime: 0
-  maximumSpawnTime: 10
+  maximumSpawnTime: 30
   timeUntillSpawn: 0
