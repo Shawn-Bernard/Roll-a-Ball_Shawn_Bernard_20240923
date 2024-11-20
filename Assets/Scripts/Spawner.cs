@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
     public Enemy enemy;
+    public GameObject Enemy;
     
     public float minimumSpawnTime;
     public float maximumSpawnTime;
@@ -28,7 +30,7 @@ public class Spawner : MonoBehaviour
         if (timeUntillSpawn <= minimumSpawnTime)
         // If TUS is less than or MST & enemy count is less than or equal to axEnemy
         {
-            Instantiate(enemy, transform.position, Quaternion.identity);
+            Instantiate(Enemy, transform.position, Quaternion.identity);
             SetTimeUntillSpawn();
         }
         

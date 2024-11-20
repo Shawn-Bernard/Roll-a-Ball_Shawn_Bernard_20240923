@@ -12,23 +12,29 @@ public class Enemy : MonoBehaviour
     public List<GameObject> itemDrops = new List<GameObject>();
     // Making a public list of itemDrops thta can be added in unity
     public int Speed;
-    private Rigidbody rb;
-    
-    // Start is called before the first frame update
+    public GameObject Player;
 
+    // Start is called before the first frame update
+    private void Awake()
+    {
+        GameObject Player;
+}
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        Follow();
+
         
     }
-    
+    private void LateUpdate()
+    {
+        Follow();
+    }
+
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Light")
@@ -39,25 +45,13 @@ public class Enemy : MonoBehaviour
     }
     void Follow()
     {
-        GameObject Player = GameObject.Find("Player");// Finding the player object
-        GameObject SafeLight = GameObject.Find("SafeZone");
-        float LightDistance = Vector3.Distance(transform.position, SafeLight.transform.position);
-        float PlayerDistance = Vector3.Distance(transform.position, Player.transform.position);
-        if (LightDistance < 3)
-        {
-            rb.AddForce(Vector3.forward,ForceMode.Force);
-            
-        }
-        else
-        {
-            transform.position = Vector3.MoveTowards(transform.position, Player.transform.position, Speed * Time.deltaTime);
-            //Moving this(enemy) towards the player position
-        }
-        
+        Vector3 Direction = (Player.transform.position - transform.position);
+        transform.forward = Direction;
+        transform.position = Vector3.MoveTowards(transform.position, Player.transform.position, Time.deltaTime);
     }
     void Drop()
     {
-        GameObject SpeedDrop = GameObject.Find("SpeedDrop");
+
         Vector3 position = transform.position;
         if (UnityEngine.Random.Range(0,7) == 0)
         {

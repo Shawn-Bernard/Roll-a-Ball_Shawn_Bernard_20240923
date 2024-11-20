@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rb;
 
     private int count;
+    public int PickUpcount;
     public TextMeshProUGUI countText;
     public GameObject TextBox;
     public GameObject winTextCount;
@@ -28,6 +29,7 @@ public class PlayerController : MonoBehaviour
 
     public float lifeTime = 100;
     public int batteries = 0;
+    public int batMax = 5 ;
 
     private bool on;
     private bool off;
@@ -90,14 +92,13 @@ public class PlayerController : MonoBehaviour
         {
             Destroy(other.gameObject);//Destroying other object(Battery)
             batteries++;//Adding one battery
-            
         }
     }
 
     void SetCountText()
     {
         countText.text = "Count: " + count.ToString();
-        if (count >= 8)
+        if (count >= PickUpcount)
         {
             winTextCount.SetActive(true);
         }
@@ -127,7 +128,7 @@ public class PlayerController : MonoBehaviour
 
         if (on) // If on do this code 
         {
-            lifeTime -= 4 * Time.deltaTime;// This will drain the lifetime by 1 * time.deltatime
+            lifeTime -= 2 * Time.deltaTime;// This will drain the lifetime by 1 * time.deltatime
         }
 
         if (lifeTime <= 0) // if LifeTime is less than or equal to 0 play this
@@ -156,9 +157,9 @@ public class PlayerController : MonoBehaviour
         {
             batteries = 0;// setting batteries to 0 so we don't go under 0
         }
-        if (batteries > 5)
+        if (batteries > batMax)
         {
-            batteries = 5;
+            batteries = batMax;
         }
     }
 }
