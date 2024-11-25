@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     public TextMeshProUGUI countText;
     public GameObject TextBox;
     public GameObject winTextCount;
+    public GameObject Menu;
 
     [Header("FlashLight Settings")]
     public GameObject flashlight;
@@ -44,8 +45,6 @@ public class PlayerController : MonoBehaviour
         winTextCount.SetActive(false);
         TextBox.SetActive(false);
 
-        Cursor.lockState = CursorLockMode.Locked;// Locking the mouse because it feels weird without it
-
         off = true; // Setting off to true
         flashlight.SetActive(false);// Setting the game object "flashlight" to false  
     }
@@ -54,6 +53,7 @@ public class PlayerController : MonoBehaviour
         LightSwitch();// Using a method here because my update would look nasty
         LightUI();
         Movement();
+        
     }
     void FixedUpdate()
     {
@@ -98,7 +98,7 @@ public class PlayerController : MonoBehaviour
 
     void SetCountText()
     {
-        countText.text = "Count: " + count.ToString();
+        countText.text = $"Count:{count}/{PickUpcount}";
         if (count >= PickUpcount)
         {
             winTextCount.SetActive(true);
