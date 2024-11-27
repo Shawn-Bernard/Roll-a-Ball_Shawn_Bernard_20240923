@@ -53,10 +53,8 @@ public class PlayerController : MonoBehaviour
         LightSwitch();// Using a method here because my update would look nasty
         LightUI();
         Movement();
-        
-    }
-    void FixedUpdate()
-    {
+        death();
+
 
     }
 
@@ -81,18 +79,23 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("PickUp"))
         {
-            other.gameObject.SetActive(false);
+            Destroy(other.gameObject);//Destroying other object(Pickups)
             count++;
             SetCountText();
-        }
-        if (other.gameObject.tag == "JumpPad" )
-        {
-            rb.AddForce(0, 5, 0, ForceMode.VelocityChange);
         }
         if (other.gameObject.tag == "Battery")
         {
             Destroy(other.gameObject);//Destroying other object(Battery)
             batteries++;//Adding one battery
+
+        }
+        
+    }
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            lifeTime--;
         }
     }
 
@@ -111,28 +114,35 @@ public class PlayerController : MonoBehaviour
             
         //Showing the amount of batteries & converting the lifeTime to only show whloe numbers
     }
+    void death()
+    {
+        if (batteries == 0 && lifeTime == 0)
+        {
+            gameObject.SetActive(false);
+        }
+    }
     void LightSwitch()
     {
         if (Input.GetButtonDown("FlashLight") && off)// This will play if button "f" is pressed & the light is off
         {
-            flashlight.SetActive(true);// Setting the game object to true
+            flashlight.SetActive(true);// Setting the game object to true with the light
             on = true;
             off = false;
         }
 
-        else if (Input.GetButtonDown("FlashLight") && on) // Same thing here but reverse
+        else if (Input.GetButtonDown("FlashLight") && on)// This will play if button "f" is pressed & the light is on
         {
             flashlight.SetActive(false);
             on = false;
             off = true;
         }
 
-        if (on) // If on do this code 
+        if (on) // If the flashlight is on 
         {
             lifeTime -= 2 * Time.deltaTime;// This will drain the lifetime by 1 * time.deltatime
         }
 
-        if (lifeTime <= 0) // if LifeTime is less than or equal to 0 play this
+        if (lifeTime <= 0) // if LifeTime (battery power) is less than or equal to 0 
         {
             flashlight.SetActive(false);
             on = false;
@@ -146,12 +156,12 @@ public class PlayerController : MonoBehaviour
             lifeTime = 100;// Sets the LifeTime to 100 so it doesn't go over 100 
         }
 
-        if (Input.GetButtonDown("Reload") && batteries >= 1)// this code will play if "r" is pressed & batteries is greater than or equal 1
+        if (Input.GetButtonDown("Reload") && batteries >= 1)//if "r" is pressed & batteries is greater than or equal 1
         {
             flashlight.SetActive(true);
             on = true;
             lifeTime += 50;// Adds to the lifeTime by whatever number put
-            batteries--;// takes away one batteries when this is played
+            batteries--;// takes away one batteries
         }
 
         if (batteries == 0)// If batteries is equal to 0 do this

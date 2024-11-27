@@ -16,7 +16,7 @@ PrefabInstance:
     - target: {fileID: -9185885570716398658, guid: c74ce3c0d47898d48b8538aca82c610a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.05
+      value: 1.45
       objectReference: {fileID: 0}
     - target: {fileID: -9185885570716398658, guid: c74ce3c0d47898d48b8538aca82c610a,
         type: 3}
@@ -128,6 +128,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: d5ce7f336c4767d4fbf1925fc0411c2a, type: 2}
+    - target: {fileID: -5375801754538655216, guid: c74ce3c0d47898d48b8538aca82c610a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -1945207838807138916, guid: c74ce3c0d47898d48b8538aca82c610a,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -141,7 +146,7 @@ PrefabInstance:
     - target: {fileID: -1149098293734888063, guid: c74ce3c0d47898d48b8538aca82c610a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.05
+      value: 1.45
       objectReference: {fileID: 0}
     - target: {fileID: -1149098293734888063, guid: c74ce3c0d47898d48b8538aca82c610a,
         type: 3}
@@ -193,6 +198,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: c2842793949d25c4a9e33d60f30d5374, type: 2}
+    - target: {fileID: 7411151966513872558, guid: c74ce3c0d47898d48b8538aca82c610a,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.7841103
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -212,7 +222,11 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c74ce3c0d47898d48b8538aca82c610a,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 7173023948178237319}
+      addedObject: {fileID: 6267781127693690331}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c74ce3c0d47898d48b8538aca82c610a,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -7759600713500955508}
   m_SourcePrefab: {fileID: 100100000, guid: c74ce3c0d47898d48b8538aca82c610a, type: 3}
 --- !u!1 &8808722608053308060 stripped
 GameObject:
@@ -234,8 +248,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemDrops:
   - {fileID: 1743509521005349870, guid: 8714f52876795f5489eb70a64c259b0f, type: 3}
-  Speed: 3
-  Player: {fileID: 0}
+  enemy: {fileID: 0}
+  player: {fileID: 0}
+  target: {x: 0, y: 0, z: 0}
 --- !u!23 &5888962553535304708
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -293,15 +308,37 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1
+  m_Radius: 1.16
   m_Height: 3
   m_Direction: 1
-  m_Center: {x: 0, y: -0.48, z: 0}
---- !u!54 &7173023948178237319
+  m_Center: {x: 0, y: 1, z: 0}
+--- !u!195 &6267781127693690331
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8808722608053308060}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 2
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!54 &-7759600713500955508
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -311,7 +348,7 @@ Rigidbody:
   serializedVersion: 4
   m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -323,8 +360,8 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 0
+  m_UseGravity: 1
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
