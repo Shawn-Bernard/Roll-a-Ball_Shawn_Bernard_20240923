@@ -18,7 +18,6 @@ public class PlayerController : MonoBehaviour
     private int count;
     public int PickUpcount;
     public TextMeshProUGUI countText;
-    public GameObject TextBox;
     public GameObject winTextCount;
     public GameObject Menu;
 
@@ -30,10 +29,10 @@ public class PlayerController : MonoBehaviour
 
     public float lifeTime = 100;
     public int batteries = 0;
-    public int batMax = 5 ;
+    public int MaxBatteries = 5 ;
     public int DrainSpeed;
 
-    private bool on;
+    private bool Light;
     private bool off;
 
     // Start is called before the first frame update
@@ -43,14 +42,13 @@ public class PlayerController : MonoBehaviour
         count = 0;
         SetCountText();
         winTextCount.SetActive(false);
-        TextBox.SetActive(false);
 
         off = true; // Setting off to true
         flashlight.SetActive(false);// Setting the game object "flashlight" to false  
     }
     void Update()
     {
-        LightSwitch();// Using a method here because my update would look nasty
+        LightSwitch();
         LightUI();
         Movement();
         death();
@@ -87,9 +85,14 @@ public class PlayerController : MonoBehaviour
         {
             Destroy(other.gameObject);//Destroying other object(Battery)
             batteries++;//Adding one battery
-
         }
-        
+        if (other.gameObject.tag == "Storage")
+        {
+            Destroy(other.gameObject);//Destroying other object(storage)
+            MaxBatteries++;
+        }
+
+
     }
     private void OnTriggerStay(Collider other)
     {
@@ -109,7 +112,7 @@ public class PlayerController : MonoBehaviour
     }
     void LightUI()
     {
-        FlashUI.text = $"Batteries [{batteries}]  Battery {lifeTime.ToString("0")}%";
+        FlashUI.text = $"Batteries [{batteries}/{MaxBatteries}]  Battery {lifeTime.ToString("0")}%";
         Controls.text = $"Off/On [F] Reload [R]";
             
         //Showing the amount of batteries & converting the lifeTime to only show whloe numbers
@@ -123,21 +126,19 @@ public class PlayerController : MonoBehaviour
     }
     void LightSwitch()
     {
-        if (Input.GetButtonDown("FlashLight") && off)// This will play if button "f" is pressed & the light is off
+        if (Input.GetButtonDown("FlashLight") && Light == false)// This will play if button "f" is pressed & the light is off
         {
             flashlight.SetActive(true);// Setting the game object to true with the light
-            on = true;
-            off = false;
+            Light = true;
         }
 
-        else if (Input.GetButtonDown("FlashLight") && on)// This will play if button "f" is pressed & the light is on
+        else if (Input.GetButtonDown("FlashLight") && Light == true)// This will play if button "f" is pressed & the light is on
         {
             flashlight.SetActive(false);
-            on = false;
-            off = true;
+            Light = false;
         }
 
-        if (on) // If the flashlight is on 
+        if (Light == true) // If the flashlight is on 
         {
             lifeTime -= 2 * Time.deltaTime;// This will drain the lifetime by 1 * time.deltatime
         }
@@ -145,8 +146,7 @@ public class PlayerController : MonoBehaviour
         if (lifeTime <= 0) // if LifeTime (battery power) is less than or equal to 0 
         {
             flashlight.SetActive(false);
-            on = false;
-            off = true;
+            Light = true;
             lifeTime = 0;// Setting lifeTime to 0 so it doesn't go under 0
         }
         
@@ -159,7 +159,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown("Reload") && batteries >= 1)//if "r" is pressed & batteries is greater than or equal 1
         {
             flashlight.SetActive(true);
-            on = true;
+            Light = true;
             lifeTime += 50;// Adds to the lifeTime by whatever number put
             batteries--;// takes away one batteries
         }
@@ -168,9 +168,9 @@ public class PlayerController : MonoBehaviour
         {
             batteries = 0;// setting batteries to 0 so we don't go under 0
         }
-        if (batteries > batMax)
+        if (batteries > MaxBatteries)
         {
-            batteries = batMax;
+            batteries = MaxBatteries;
         }
     }
 }

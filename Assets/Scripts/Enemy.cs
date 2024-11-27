@@ -86,7 +86,11 @@ public class Enemy : MonoBehaviour
         Vector3 position = transform.position;
         if (UnityEngine.Random.Range(0,6) == 0 || UnityEngine.Random.Range(0, 7) == 2)
         {
-            GameObject Drop = Instantiate(itemDrops[0], position, Quaternion.identity);
+            GameObject Drop = Instantiate(itemDrops[0], position + Vector3.up, Quaternion.identity); 
+        }
+        else if(UnityEngine.Random.Range(0, 6) == 3 || UnityEngine.Random.Range(0, 7) == 4)
+        {
+            GameObject Drop = Instantiate(itemDrops[1], position + Vector3.up, Quaternion.identity);
         }
         
         //Making a itemDrop[Battery] at the enemy poitison
