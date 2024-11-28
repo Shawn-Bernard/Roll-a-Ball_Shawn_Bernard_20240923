@@ -104,7 +104,7 @@ public class PlayerController : MonoBehaviour
 
     void SetCountText()
     {
-        countText.text = $"Count:{count}/{PickUpcount}";
+        countText.text = $"Soul Orbs: {count}/{PickUpcount}";
         if (count >= PickUpcount)
         {
             winTextCount.SetActive(true);
