@@ -14,7 +14,7 @@ public class Enemy : MonoBehaviour
     // Making a public list of itemDrops thta can be added in unity
     public NavMeshAgent enemy;
     public GameObject player;
-    float range = 6f;
+    float range = 10f;
     public Vector3 target;
     // Start is called before the first frame update
     public void Awake()
@@ -67,7 +67,7 @@ public class Enemy : MonoBehaviour
     }
     bool Randomtarget(ref Vector3 newtarget)
     {
-        Vector3 randTarget = Random.insideUnitSphere * range;// Random target inside a sphere unit and making it the size of range
+        Vector3 randTarget = transform.position + Random.insideUnitSphere * range;// Random target inside a sphere unit and making it the size of range
         NavMeshHit hit;
         //taking randtarget, puting out my hit on mesh with the distance of range and checking all areas on mesh
         if (NavMesh.SamplePosition(randTarget, out hit, range, NavMesh.AllAreas))
